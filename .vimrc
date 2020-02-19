@@ -7,6 +7,7 @@ set mouse-=a
 set nocompatible
 filetype off
 colorscheme darkblue
+syntax on
 
 filetype plugin indent on    " required
 
