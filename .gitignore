@@ -6,4 +6,5 @@
 !.zshenv
 !.gitconfig
 !.gitignore
+!.scripts
 !.scripts/*
