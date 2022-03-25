@@ -7,6 +7,15 @@ PASSPATH=""
 USERNAME="Administrator"
 KEYBOARDMAP="en-us"
 
+if [[ "$#" -lt 1 ]]; then
+  echo "Usage: $(basename "$0") <hostname> [USERNAME]" >&2
+  exit 1
+fi 
+
+if [[ "$#" -gt 1 ]]; then
+  USERNAME=$2
+fi
+
 # Split hostname on every dot
 IFS='.' read -r -a TERMS <<< "$HOSTNAME"
 
@@ -22,5 +31,7 @@ done
 PASSPATH="$PASSPATH/$HOSTNAME/system/$USERNAME"
 
 PASSWORD=$(pass "$PASSPATH")
-
+if [[ $? != 0 ]]; then
+  exit 1
+fi
 rdesktop -u "$USERNAME" -p "$PASSWORD" -k "$KEYBOARDMAP" "$HOSTNAME"
