@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Script to connect to windows rdp server and use credentials from pass
+# requires rdesktop
+
+HOSTNAME=$1
+PASSPATH=""
+USERNAME="Administrator"
+KEYBOARDMAP="en-us"
+
+# Split hostname on every dot
+IFS='.' read -r -a TERMS <<< $HOSTNAME
+
+DOMAIN="${TERMS[-2]}.${TERMS[-1]}"
+PASSPATH="servers/$DOMAIN"
+
+for i in $(echo "${!TERMS[@]}" | rev);
+do 
+  if [[ ${TERMS[$i]} == ${TERMS[-2]} || ${TERMS[$i]} == ${TERMS[-1]} || ${TERMS[$i]} == ${TERMS[0]} ]]; then continue; fi
+  PASSPATH="$PASSPATH/${TERMS[$i]}"
+done
+
+PASSPATH="$PASSPATH/$HOSTNAME/system/$USERNAME"
+
+
+rdesktop -u $USERNAME -p $(pass $PASSPATH) -k $KEYBOARDMAP $HOSTNAME

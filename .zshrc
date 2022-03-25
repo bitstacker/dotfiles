@@ -7,3 +7,7 @@ compinit
 for file in "$HOME"/.zshrc.d/*.zsh; do
   source "$file"
 done
+
+if [ -d "$HOME/.scripts" ] ; then
+    PATH="$HOME/.scripts:$PATH"
+fi
