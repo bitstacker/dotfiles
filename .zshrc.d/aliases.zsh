@@ -42,6 +42,7 @@ alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/nu
 alias ssl-cert-info=ssl-cert-info
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dgit='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias ipr="ip -c r && ip -6 -c r"
 alias xkcdpass='xkcdpass -d "" -n3'
 
 # Completion for work passwordstore
