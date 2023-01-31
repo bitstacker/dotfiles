@@ -34,10 +34,29 @@ compdef _hosts telnetfunc
 alias s=sshfunc
 alias s4=sshfunc4
 alias t=telnetfunc
+alias lucy="ssh -t -A lucy.plutex.de './.scripts/tmux.sh'"
+alias lea="ssh -t -A lea.plutex.de './.scripts/tmux.sh'"
+alias lina="ssh -t -A lina.plutex.de './.scripts/tmux.sh'"
 alias exr=executeremote
 alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
 alias ssl-cert-info=ssl-cert-info
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dgit='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias xkcdpass='xkcdpass -d "" -n3'
+
+# Completion for work passwordstore
+zstyle ':completion::complete:wpass::' prefix "$HOME/.password-store-work"
+wpass() {
+  pass $@
+}
+compdef _pass wpass
+
+# Completion for home passwordstore
+zstyle ':completion::complete:hpass::' prefix "$HOME/.password-store-home"
+hpass() {
+  pass $@
+}
+compdef _pass hpass
+
 compdef __gitcomp dotfiles
 compdef __gitcomp dgit
