@@ -45,18 +45,18 @@ alias dgit='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias ipr="ip -c r && ip -6 -c r"
 alias xkcdpass='xkcdpass -d "" -n3'
 
-# Completion for work passwordstore
 zstyle ':completion::complete:wpass::' prefix "$HOME/.password-store-work"
-wpass() {
-  pass $@
-}
-compdef _pass wpass
-
-# Completion for home passwordstore
 zstyle ':completion::complete:hpass::' prefix "$HOME/.password-store-home"
-hpass() {
-  pass $@
+
+wpass() {
+  PASSWORD_STORE_DIR=$HOME/.password-store-work pass $@
 }
+
+hpass() {
+  PASSWORD_STORE_DIR=$HOME/.password-store-home pass $@
+}
+
+compdef _pass wpass
 compdef _pass hpass
 
 compdef __gitcomp dotfiles
