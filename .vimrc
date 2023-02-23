@@ -16,5 +16,5 @@ autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
 
-source $HOME/.vimrc.d/00_vundle.vim
+source $HOME/.vimrc.d/00_vimplug.vim
 source $HOME/.vimrc.d/airline.vim
