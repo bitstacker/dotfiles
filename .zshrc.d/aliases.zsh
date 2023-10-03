@@ -1,14 +1,4 @@
 # User configuration
-sshfunc() {
-    ssh "$1"
-}
-sshfunc4() {
-    ssh -4 "$1"
-}
-telnetfunc() {
-    telnet "$1"
-}
-
 executeremote() {
   for i in $(echo $1 | sed "s/,/ /g")
   do
@@ -31,9 +21,7 @@ compdef _hosts sshfunc
 compdef _hosts sshfunc4
 compdef _hosts telnetfunc
 
-alias s=sshfunc
-alias s4=sshfunc4
-alias t=telnetfunc
+alias s=ssh
 alias lucy="ssh -t -A lucy.plutex.de './.scripts/tmux.sh'"
 alias lea="ssh -t -A lea.plutex.de './.scripts/tmux.sh'"
 alias lina="ssh -t -A lina.plutex.de './.scripts/tmux.sh'"
